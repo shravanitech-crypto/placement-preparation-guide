@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aptitude Assessment</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#000;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:linear-gradient(to right,#000,#111);
+}
+
+.logo{
+color:red;
+font-size:28px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:red;
+font-weight:600;
+}
+
+.nav-links a:hover{
+color:white;
+}
+
+/* USER */
+
+.user-section{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.logout-btn{
+background:#ff3b5c;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+/* PAGE */
+
+.container{
+padding:60px 120px;
+}
+
+h1{
+font-size:40px;
+}
+
+/* QUESTIONS */
+
+.question-box{
+background:#111;
+padding:25px;
+border-radius:10px;
+margin-top:20px;
+}
+
+.option{
+margin:8px 0;
+display:block;
+}
+
+/* BUTTON */
+
+.submit-btn{
+margin-top:30px;
+padding:12px 25px;
+background:red;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+/* RESULT */
+
+.result{
+margin-top:30px;
+font-size:24px;
+color:#4CAF50;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="logo">PLACED</div>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="#">Company Wise</a></li>
+<li><a href="#">Aptitude</a></li>
+<li><a href="#">Coding</a></li>
+<li><a href="mocktest.html">Mock Tests</a></li>
+<li><a href="#">Check Resume</a></li>
+</ul>
+
+<div class="user-section">
+
+<span id="userName">Hey, User</span>
+
+<button class="logout-btn" onclick="logout()">Logout</button>
+
+</div>
+
+</nav>
+
+<!-- PAGE CONTENT -->
+
+<div class="container">
+
+<h1>Aptitude Assessment</h1>
+
+<form id="quizForm">
+
+<div class="question-box">
+
+<p>1. What is 15 + 20 ?</p>
+
+<label class="option">
+<input type="radio" name="q1" value="A"> 25
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="B"> 35
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="C"> 40
+</label>
+
+</div>
+
+
+<div class="question-box">
+
+<p>2. HCF of 12 and 18?</p>
+
+<label class="option">
+<input type="radio" name="q2" value="A"> 6
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="B"> 4
+</label>
+
+<label class="option">
+<input type="radio" name="q2" value="C"> 3
+</label>
+
+</div>
+
+
+<div class="question-box">
+
+<p>3. If 10 workers finish a job in 5 days, 5 workers will finish in?</p>
+
+<label class="option">
+<input type="radio" name="q3" value="A"> 10 days
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="B"> 15 days
+</label>
+
+<label class="option">
+<input type="radio" name="q3" value="C"> 20 days
+</label>
+
+</div>
+
+
+<button type="button" class="submit-btn" onclick="submitQuiz()">
+Submit Assessment
+</button>
+
+</form>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+/* USER NAME */
+
+document.getElementById("userName").innerText =
+"Hey, " + (localStorage.getItem("username") || "User")
+
+
+/* CORRECT ANSWERS */
+
+const answers = {
+q1: "B",
+q2: "A",
+q3: "A"
+};
+
+
+/* QUIZ SUBMIT */
+
+function submitQuiz(){
+
+let score = 0;
+let total = Object.keys(answers).length;
+
+for(let q in answers){
+
+const selected = document.querySelector(`input[name="${q}"]:checked`);
+
+if(selected && selected.value === answers[q]){
+score++;
+}
+
+}
+
+/* SHOW RESULT */
+
+document.getElementById("result").innerText =
+"Your Score: " + score + " / " + total;
+
+
+/* STORE SCORE */
+
+localStorage.setItem("aptitudeScore", score);
+localStorage.setItem("aptitudeTotal", total);
+
+
+/* CALCULATE PROGRESS */
+
+let progress = Math.round((score / total) * 100);
+
+localStorage.setItem("progress", progress);
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem("userLoggedIn");
+window.location.href="index.html";
+
+}
+
+</script>
+
+</body>
+</html>

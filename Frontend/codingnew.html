@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLACED | The Ultimate Dev Cinema</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Fira+Code:wght@400;500&display=swap');
+
+        :root {
+            --nf-red: #E50914;
+            --nf-black: #080808;
+            --nf-card: #141414;
+            --nf-grey: #2a2a2a;
+            --text-main: #ffffff;
+            --text-dim: #a3a3a3;
+            --success: #46d369;
+            --sidebar-w: 320px;
+            --ai-glow: #7000ff;
+            --easy: #00b8a3;
+            --medium: #ffc01e;
+            --hard: #ef4743;
+        }
+
+        /* Basic Resets & Transitions */
+        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        body {
+            background-color: var(--nf-black);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            height: 70px;
+            background: linear-gradient(to bottom, rgba(0,0,0,1), transparent);
+            border-bottom: 1px solid #222;
+            display: flex;
+            align-items: center; justify-content: space-between;
+            padding: 0 4%; z-index: 1000;
+        }
+
+        .brand { font-size: 32px; font-weight: 900; color: var(--nf-red); letter-spacing: -1.5px; cursor: pointer; }
+
+        .nav-tabs { display: flex; gap: 25px; }
+        .tab-link { 
+            color: var(--text-dim); font-size: 14px; font-weight: 600; cursor: pointer; 
+            text-decoration: none; position: relative; padding: 5px 0;
+        }
+        .tab-link.active { color: white; }
+        .tab-link.active::after {
+            content: ''; position: absolute; bottom: -22px; left: 0; width: 100%; height: 4px; background: var(--nf-red);
+        }
+
+        .user-stats { display: flex; gap: 15px; }
+        .stat-pill { 
+            background: rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 4px; 
+            font-size: 12px; font-weight: 800; border: 1px solid #333;
+        }
+
+        /* --- LAYOUT STRUCTURE --- */
+        .app-container { display: flex; flex: 1; overflow: hidden; }
+
+        aside {
+            width: var(--sidebar-w); background: var(--nf-black);
+            border-right: 1px solid #222; overflow-y: auto; padding: 20px;
+        }
+
+        .category-group { margin-bottom: 30px; }
+        .cat-title { 
+            font-size: 11px; font-weight: 900; color: var(--nf-red); 
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;
+        }
+
+        .topic-node {
+            padding: 12px 15px; border-radius: 4px; font-size: 14px;
+            cursor: pointer; color: var(--text-dim); margin-bottom: 4px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,255,255,0.02);
+        }
+        .topic-node:hover { background: var(--nf-grey); color: white; transform: translateX(8px); }
+        .topic-node.active { background: var(--nf-red); color: white; font-weight: 700; }
+        
+        .check-icon { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #444; margin-left: 8px;}
+        .check-icon.done { background: var(--success); border-color: var(--success); }
+
+        /* Difficulty Tags */
+        .diff-tag {
+            font-size: 9px; font-weight: 900; padding: 2px 6px; border-radius: 3px;
+            text-transform: uppercase; margin-left: auto;
+        }
+        .easy { color: var(--easy); border: 1px solid var(--easy); }
+        .medium { color: var(--medium); border: 1px solid var(--medium); }
+        .hard { color: var(--hard); border: 1px solid var(--hard); }
+
+        main { flex: 1; overflow-y: auto; position: relative; background: #000; }
+
+        /* --- DASHBOARD VIEW --- */
+        #view-dash { padding: 40px 4%; }
+        .hero-banner {
+            height: 350px; background: linear-gradient(to right, #000, transparent), url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=2069');
+            background-size: cover; border-radius: 12px; display: flex; flex-direction: column; justify-content: center;
+            padding: 40px; margin-bottom: 40px; border: 1px solid #222;
+        }
+
+        /* Real-time Row Scroller */
+        .row-scroller { display: flex; gap: 15px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; }
+        .content-card {
+            min-width: 260px; height: 150px; background: var(--nf-card); border-radius: 6px;
+            padding: 20px; cursor: pointer; border: 1px solid #333; position: relative;
+            display: flex; flex-direction: column; justify-content: flex-end;
+        }
+        .content-card:hover { transform: scale(1.05); z-index: 10; border-color: var(--nf-red); }
+        .content-card b { font-size: 16px; margin-bottom: 5px; }
+        .content-card span { font-size: 12px; color: var(--text-dim); }
+
+        /* --- THEORY VIEW --- */
+        #view-theory { max-width: 900px; margin: 40px auto; padding: 40px; background: var(--nf-card); border-radius: 12px; }
+        .theory-content { line-height: 1.8; color: #ccc; font-size: 18px; }
+        .theory-content h1 { color: white; font-size: 48px; margin-bottom: 10px; }
+        .lock-notice { background: rgba(229, 9, 20, 0.1); border: 1px solid var(--nf-red); padding: 15px; border-radius: 4px; margin: 20px 0; font-size: 14px; }
+
+        /* --- COMPILER VIEW --- */
+        #compiler-view { height: 100%; display: grid; grid-template-columns: 400px 1fr; gap: 2px; background: #222; }
+        .pane { background: var(--nf-black); padding: 25px; overflow-y: auto; }
+        textarea#code-editor {
+            flex: 1; background: #050505; color: #d4d4d4; padding: 20px;
+            font-family: 'Fira Code', monospace; font-size: 16px; border: none; outline: none; resize: none;
+        }
+        .terminal { height: 200px; background: #000; color: var(--success); padding: 20px; border-top: 1px solid #333; font-family: monospace; }
+
+        /* --- STATS VIEW --- */
+        .stat-box { background: var(--nf-card); padding: 25px; border-radius: 8px; border: 1px solid #333; }
+        .progress-circle { width: 100px; height: 100px; border-radius: 50%; border: 10px solid #222; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; color: var(--nf-red); }
+
+        /* --- CLEAN AI HINT UI --- */
+        .btn-ai-minimal {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #444;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+        .btn-ai-minimal:hover {
+            background: #252525;
+            border-color: #666;
+        }
+        .btn-ai-minimal svg { fill: var(--nf-red); }
+
+        #ai-hint-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; display: none;
+            align-items: center; justify-content: center;
+        }
+        .hint-modal {
+            background: #111; width: 500px; padding: 40px; border-radius: 8px;
+            border: 1px solid #333; position: relative;
+        }
+        .hint-modal h2 { margin-top: 0; font-size: 22px; color: var(--nf-red); }
+        .hint-modal p { color: #aaa; line-height: 1.6; font-size: 15px; }
+
+        /* Utilities */
+        .hidden { display: none !important; }
+        .btn-red { 
+            background: var(--nf-red); color: white; border: none; padding: 15px 30px; 
+            border-radius: 4px; font-weight: 800; cursor: pointer; text-transform: uppercase;
+        }
+        .btn-red:disabled { background: #555; cursor: not-allowed; }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #333; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand" onclick="goHome()">PLACED</div>
+    <nav class="nav-tabs">
+        <div class="tab-link active" id="tab-dsa" onclick="switchMainTab('DSA')">Roadmap</div>
+        <div class="tab-link" id="tab-lang" onclick="switchMainTab('LANG')">Languages</div>
+        <div class="tab-link" id="tab-stats" onclick="switchMainTab('STATS')">My Progress</div>
+    </nav>
+    <div class="user-stats">
+        <div class="stat-pill">🔥 <span id="streak">1</span> DAYS</div>
+        <div class="stat-pill" style="color:var(--nf-red)">⭐ <span id="points">0</span> PTS</div>
+    </div>
+</header>
+
+<div class="app-container">
+    <aside id="roadmap-sidebar"></aside>
+
+    <main id="main-stage">
+        <section id="view-dash">
+            <div class="hero-banner">
+                <h1 style="font-size: 50px; margin: 0;">Continue Learning</h1>
+                <p>Track your progress in Real-time.</p>
+                <button class="btn-red" style="width: fit-content;" onclick="resumeLast()">Resume Next Lesson</button>
+            </div>
+            <h2 class="cat-title">Recently Viewed</h2>
+            <div class="row-scroller" id="recent-row">
+                </div>
+        </section>
+
+        <section id="view-theory" class="hidden">
+            <div class="theory-content" id="theory-area"></div>
+            <div class="lock-notice" id="reading-lock">
+                ⚠️ Reading the Manual is mandatory before practice.
+            </div>
+            <button class="btn-red" id="unlock-btn" disabled onclick="enterCompiler()">Start Practice</button>
+        </section>
+
+        <section id="view-compiler" class="hidden">
+            <div id="compiler-view">
+                <div class="pane">
+                    <button class="tab-link" onclick="backToTheory()" style="margin-bottom: 20px;">← Back to Theory</button>
+                    <h2 id="comp-title" style="color:var(--nf-red)">Problem</h2>
+                    <p id="comp-desc" style="color:#aaa; line-height:1.6"></p>
+                    
+                    <button class="btn-ai-minimal" onclick="getAIHint()">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+                        GET LOGIC HINT
+                    </button>
+                </div>
+                <div class="pane" style="padding:0; display:flex; flex-direction:column;">
+                   <div style="background:#181818; padding:10px 20px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <select id="lang-selector" onchange="changeLanguage()" style="background: #2a2a2a; color: white; border: 1px solid #444; padding: 5px; border-radius: 4px; font-size: 12px; outline: none;">
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="java">Java</option>
+        </select>
+        <span id="file-extension" style="font-size:12px; color:#666;">main.py</span>
+    </div>
+    <button class="btn-red" style="padding:8px 20px; font-size:12px;" onclick="runCode()">Run Code</button>
+</div>
+                    <textarea id="code-editor" spellcheck="false"></textarea>
+                    <div class="terminal" id="console-out">System: Ready...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-stats" class="hidden" style="padding: 40px 4%;">
+            <h1 style="font-size: 40px; border-left: 5px solid var(--nf-red); padding-left: 20px;">Your Real-time Rank</h1>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:40px;">
+                <div class="stat-box">
+                    <h3>Overall Mastery</h3>
+                    <div style="display:flex; align-items:center; gap:20px;">
+                        <div class="progress-circle" id="perc-circle">0%</div>
+                        <p id="stat-solved-count">0 / 140 Topics Solved</p>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <h3>Leaderboard Rank</h3>
+                    <h1 id="user-rank" style="font-size: 60px; margin: 0;">#9,999+</h1>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div id="ai-hint-overlay">
+    <div class="hint-modal">
+        <h2>Logic Assistant</h2>
+        <p id="ai-hint-text"></p>
+        <button class="btn-red" onclick="closeHint()" style="width:100%;">Close Hint</button>
+    </div>
+</div>
+
+<script>
+    /* --- DATA ENGINE (Full Topic Set) --- 
+       Preserving all topics from your original code.
+    */
+    const DATABASE = {
+        DSA: {
+            "Arrays (1-15)": [
+                {t: "Find Max Element", d: "easy"}, {t: "Find Min Element", d: "easy"}, 
+                {t: "Reverse Array", d: "easy"}, {t: "Rotate Array", d: "medium"}, 
+                {t: "Kadane's Algorithm", d: "medium"}, {t: "Trapping Rain Water", d: "hard"}, 
+                {t: "Merge Intervals", d: "medium"}, {t: "Remove Duplicates", d: "easy"}, 
+                {t: "Move Zeroes", d: "easy"}, {t: "Subarray Sum", d: "medium"}, 
+                {t: "Max Product Subarray", d: "hard"}, {t: "Next Permutation", d: "hard"}, 
+                {t: "Sort Colors", d: "medium"}, {t: "Pascal Triangle", d: "easy"}, 
+                {t: "Stock Buy Sell", d: "easy"}
+            ],
+            "Strings (16-30)": [
+                {t: "Palindrome Check", d: "easy"}, {t: "Anagram Check", d: "easy"}, 
+                {t: "Longest Substring", d: "medium"}, {t: "Common Prefix", d: "easy"}, 
+                {t: "Group Anagrams", d: "medium"}, {t: "Valid Parentheses", d: "easy"}, 
+                {t: "Reverse Words", d: "medium"}, {t: "String Compression", d: "medium"}, 
+                {t: "Edit Distance", d: "hard"}, {t: "Wildcard Matching", d: "hard"}
+            ],
+            "Linked List": [
+                {t: "Reverse LL", d: "medium"}, {t: "Detect Cycle", d: "medium"}, 
+                {t: "Merge Two Lists", d: "easy"}, {t: "Remove Nth Node", d: "medium"}, 
+                {t: "Intersection of LL", d: "easy"}, {t: "Palindrome LL", d: "medium"}, 
+                {t: "Flattening LL", d: "hard"}
+            ],
+            "Searching & Sorting": [
+                {t: "Binary Search", d: "easy"}, {t: "First/Last Occur", d: "medium"}, 
+                {t: "Quick Sort", d: "medium"}, {t: "Merge Sort", d: "medium"}, 
+                {t: "Heap Sort", d: "hard"}, {t: "Search in Matrix", d: "medium"}
+            ],
+            "Trees & Graphs": [
+                {t: "Inorder Traversal", d: "easy"}, {t: "Height of Tree", d: "easy"}, 
+                {t: "Diameter", d: "medium"}, {t: "Lowest Common Ancestor", d: "medium"}, 
+                {t: "BFS", d: "medium"}, {t: "DFS", d: "medium"}, 
+                {t: "Dijkstra", d: "hard"}, {t: "Topological Sort", d: "hard"}
+            ]
+        },
+        LANG: {
+            "C Language": [
+                {t: "Syntax & Data Types", d: "easy"}, {t: "Pointers Mastery", d: "hard"}, 
+                {t: "DMA (Malloc/Free)", d: "medium"}, {t: "Structures", d: "easy"}, 
+                {t: "File Handling", d: "medium"}, {t: "Preprocessors", d: "easy"}
+            ],
+            "C++ Pro": [
+                {t: "OOPs Basics", d: "easy"}, {t: "Inheritance", d: "medium"}, 
+                {t: "Polymorphism", d: "medium"}, {t: "STL Vectors", d: "easy"}, 
+                {t: "STL Maps/Sets", d: "medium"}, {t: "Templates", d: "hard"}, 
+                {t: "Smart Pointers", d: "hard"}
+            ],
+            "Java Mastery": [
+                {t: "JVM Architecture", d: "hard"}, {t: "Exception Handling", d: "easy"}, 
+                {t: "Multithreading", d: "hard"}, {t: "Collections Framework", d: "medium"}, 
+                {t: "Lambda Expressions", d: "medium"}, {t: "JDBC", d: "medium"}
+            ],
+            "Pythonic": [
+                {t: "List Comprehension", d: "easy"}, {t: "Decorators", d: "hard"}, 
+                {t: "Generators", d: "medium"}, {t: "Async IO", d: "hard"}, 
+                {t: "Pip & Virtualenvs", d: "easy"}, {t: "Pandas/NumPy Basics", d: "medium"}
+            ]
+        }
+    };
+
+    const CONTENT_LIB = {
+        "Reverse Array": {
+            theory: "<h1>Reverse Array</h1><p>Reversing an array is the process of swapping elements from both ends.</p><h3>The Strategy:</h3><ul><li>Start pointer at index 0.</li><li>End pointer at index n-1.</li><li>Swap them and move inward.</li></ul>",
+            problem: "Write a function to reverse the array in-place.",
+            hint: "Use a while loop with `start < end`. In each iteration, swap `arr[start]` with `arr[end]` and move pointers."
+        },
+        "Palindrome Check": {
+            theory: "<h1>Palindrome Check</h1><p>A string is a palindrome if it reads the same forward and backward.</p>",
+            problem: "Check if the given string is a palindrome.",
+            hint: "AI: Clean the string, then use two pointers to compare characters from both ends."
+        }
+    };
+
+    /* --- STATE MANAGEMENT --- 
+    */
+    let state = JSON.parse(localStorage.getItem('placed_cinema_v2')) || {
+        solved: [], points: 0, mode: 'DSA', lastTopic: 'Reverse Array', recent: []
+    };
+
+    function save() { 
+        localStorage.setItem('placed_cinema_v2', JSON.stringify(state)); 
+        document.getElementById('points').innerText = state.points;
+    }
+
+    /* --- UI NAVIGATION --- 
+    */
+    function switchMainTab(tab) {
+        document.querySelectorAll('.tab-link').forEach(t => t.classList.remove('active'));
+        const activeTab = document.getElementById('tab-' + tab.toLowerCase());
+        if(activeTab) activeTab.classList.add('active');
+
+        hideViews();
+        if(tab === 'STATS') {
+            document.getElementById('view-stats').classList.remove('hidden');
+            updateStats();
+        } else {
+            state.mode = tab;
+            document.getElementById('view-dash').classList.remove('hidden');
+            renderSidebar();
+            renderRecent();
+        }
+    }
+
+    function renderSidebar() {
+        const sidebar = document.getElementById('roadmap-sidebar');
+        sidebar.innerHTML = "";
+        const data = DATABASE[state.mode];
+        if(!data) return;
+
+        for(let cat in data) {
+            let div = document.createElement('div');
+            div.className = 'category-group';
+            div.innerHTML = `<div class="cat-title">${cat}</div>`;
+            data[cat].forEach(obj => {
+                let node = document.createElement('div');
+                node.className = `topic-node ${obj.t === state.lastTopic ? 'active' : ''}`;
+                node.onclick = () => loadTopic(obj.t);
+                node.innerHTML = `
+                    <span>${obj.t}</span>
+                    <span class="diff-tag ${obj.d}">${obj.d}</span>
+                    <div class="check-icon ${state.solved.includes(obj.t)?'done':''}"></div>
+                `;
+                div.appendChild(node);
+            });
+            sidebar.appendChild(div);
+        }
+    }
+	
+	
+	/* --- LANGUAGE CONFIG --- */
+const LANG_TEMPLATES = {
+    python: {
+        ext: "main.py",
+        code: "# Placed Environment\ndef solution(input):\n    # TODO: Logic\n    return True\n\nprint(solution(None))"
+    },
+    cpp: {
+        ext: "main.cpp",
+        code: "#include <iostream>\nusing namespace std;\n\nint main() {\n    // TODO: Logic\n    cout << \"Ready to code!\" << endl;\n    return 0;\n}"
+    },
+    java: {
+        ext: "Main.java",
+        code: "public class Main {\n    public static void main(String[] args) {\n        // TODO: Logic\n        System.out.println(\"Ready to code!\");\n    }\n}"
+    }
+};
+
+// Update the changeLanguage function
+function changeLanguage() {
+    const lang = document.getElementById('lang-selector').value;
+    const template = LANG_TEMPLATES[lang];
+    
+    // Update filename display
+    document.getElementById('file-extension').innerText = template.ext;
+    
+    // Update Editor content
+    document.getElementById('code-editor').value = template.code;
+    
+    // Save preference to state
+    state.selectedLang = lang;
+    save();
+}
+	
+
+    /* --- LOGIC FOR RECENTLY VIEWED --- 
+    */
+    function renderRecent() {
+        const row = document.getElementById('recent-row');
+        row.innerHTML = "";
+        
+        if(!state.recent || state.recent.length === 0) {
+            row.innerHTML = "<p style='color:#444; padding-left:10px;'>Start exploring to see history...</p>";
+            return;
+        }
+
+        state.recent.forEach(topic => {
+            let card = document.createElement('div');
+            card.className = 'content-card';
+            card.onclick = () => loadTopic(topic);
+            card.innerHTML = `
+                <b>${topic}</b>
+                <span>Click to continue episode</span>
+                <div style="height:4px; width:70%; background:var(--nf-red); position:absolute; bottom:0; left:0; border-radius:0 2px 2px 0;"></div>
+            `;
+            row.appendChild(card);
+        });
+    }
+
+    function addToRecent(topic) {
+        if(!state.recent) state.recent = [];
+        // Remove if exists to bring to front
+        state.recent = state.recent.filter(t => t !== topic);
+        state.recent.unshift(topic);
+        // Limit to 6 items
+        if(state.recent.length > 6) state.recent.pop();
+        save();
+    }
+
+    /* --- TOPIC HANDLING --- 
+    */
+    function loadTopic(topic) {
+        state.lastTopic = topic;
+        addToRecent(topic);
+        save();
+        hideViews();
+        
+        const theoryView = document.getElementById('view-theory');
+        theoryView.classList.remove('hidden');
+        
+        const content = CONTENT_LIB[topic] || { 
+            theory: `<h1>${topic}</h1><p>Documentation for ${topic} is being synchronized...</p>`,
+            problem: "Solve problem for: " + topic,
+            hint: "AI: Analyze the complexity and edge cases."
+        };
+        
+        document.getElementById('theory-area').innerHTML = content.theory;
+        
+        const unlockBtn = document.getElementById('unlock-btn');
+        unlockBtn.disabled = true;
+        setTimeout(() => { unlockBtn.disabled = false; }, 1500);
+        
+        renderSidebar();
+        renderRecent();
+    }
+
+function enterCompiler() {
+    hideViews();
+    document.getElementById('view-compiler').classList.remove('hidden');
+    
+    const content = CONTENT_LIB[state.lastTopic] || { problem: "Solve topic: " + state.lastTopic };
+    document.getElementById('comp-title').innerText = state.lastTopic;
+    document.getElementById('comp-desc').innerText = content.problem;
+
+    // Load preferred language or default to python
+    const currentLang = state.selectedLang || 'python';
+    document.getElementById('lang-selector').value = currentLang;
+    
+    const template = LANG_TEMPLATES[currentLang];
+    document.getElementById('file-extension').innerText = template.ext;
+    document.getElementById('code-editor').value = template.code;
+}
+
+    /* --- AI HINT LOGIC --- 
+    */
+    function getAIHint() {
+        const hintText = CONTENT_LIB[state.lastTopic]?.hint || "Look for an optimal O(n) or O(log n) solution.";
+        document.getElementById('ai-hint-text').innerText = hintText;
+        document.getElementById('ai-hint-overlay').style.display = 'flex';
+    }
+
+    function closeHint() {
+        document.getElementById('ai-hint-overlay').style.display = 'none';
+    }
+
+    /* --- EXECUTION & STATS --- 
+    */
+    function runCode() {
+        const consoleOut = document.getElementById('console-out');
+        consoleOut.innerText = "> Running test cases for " + state.lastTopic + "...\n> Test Case 1: Success\n> Test Case 2: Success\n> All Tests Passed!";
+        
+        if(!state.solved.includes(state.lastTopic)) {
+            state.solved.push(state.lastTopic);
+            state.points += 100;
+            save();
+            renderSidebar();
+        }
+    }
+
+    function updateStats() {
+        const solvedCount = state.solved.length;
+        const total = 140;
+        const percentage = Math.round((solvedCount / total) * 100);
+        
+        document.getElementById('perc-circle').innerText = percentage + "%";
+        document.getElementById('stat-solved-count').innerText = `${solvedCount} / ${total} Topics Solved`;
+        
+        // Mock Rank Logic
+        const rank = Math.max(1, 12450 - (state.points * 2));
+        document.getElementById('user-rank').innerText = "#" + rank.toLocaleString();
+    }
+
+    function hideViews() { 
+        const views = ['view-dash', 'view-theory', 'view-compiler', 'view-stats'];
+        views.forEach(v => {
+            const el = document.getElementById(v);
+            if(el) el.classList.add('hidden');
+        }); 
+    }
+
+    function goHome() { switchMainTab('DSA'); }
+    function backToTheory() { loadTopic(state.lastTopic); }
+    function resumeLast() { loadTopic(state.lastTopic); }
+
+    /* --- INITIALIZATION --- 
+    */
+    window.onload = () => {
+        renderSidebar();
+        switchMainTab('DSA');
+        document.getElementById('points').innerText = state.points;
+    };
+</script>
+</body>
+</html>

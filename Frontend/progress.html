@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>PLACED - Progress Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:#0f0f0f;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 60px;
+background:black;
+}
+
+.logo{
+font-size:24px;
+font-weight:700;
+color:#e50914;
+}
+
+/* HERO */
+
+.hero{
+height:280px;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+url("https://images.unsplash.com/photo-1519389950473-47ba0277781c");
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.hero h1{
+font-size:40px;
+color:#e50914;
+}
+
+.hero p{
+color:#ccc;
+}
+
+/* DASHBOARD */
+
+.section{
+padding:60px;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+}
+
+.card{
+background:#1a1a1a;
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.7);
+text-align:center;
+}
+
+.card:hover{
+transform:scale(1.05);
+transition:0.3s;
+}
+
+.card h3{
+color:#e50914;
+margin-bottom:20px;
+}
+
+canvas{
+max-width:260px;
+margin:auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+<div class="logo">PLACED</div>
+</div>
+
+<div class="hero">
+<h1>Student Progress Dashboard</h1>
+<p>Track your Placement Preparation Progress</p>
+</div>
+
+<div class="section">
+
+<div class="dashboard">
+
+<!-- Circular Chart -->
+
+<div class="card">
+<h3>Overall Progress</h3>
+<canvas id="overallChart"></canvas>
+</div>
+
+<!-- Doughnut Chart -->
+
+<div class="card">
+<h3>Aptitude Skills</h3>
+<canvas id="aptitudeChart"></canvas>
+</div>
+
+<!-- Bar Chart -->
+
+<div class="card">
+<h3>Coding Practice</h3>
+<canvas id="codingChart"></canvas>
+</div>
+
+<!-- Line Chart -->
+
+<div class="card">
+<h3>Mock Test Scores</h3>
+<canvas id="mockChart"></canvas>
+</div>
+
+<!-- Radar Chart -->
+
+<div class="card">
+<h3>Skill Strength</h3>
+<canvas id="skillChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* Overall Progress */
+
+new Chart(document.getElementById("overallChart"),{
+type:'doughnut',
+data:{
+labels:["Completed","Remaining"],
+datasets:[{
+data:[65,35],
+backgroundColor:["#e50914","#333"]
+}]
+},
+options:{plugins:{legend:{display:false}}}
+});
+
+/* Aptitude */
+
+new Chart(document.getElementById("aptitudeChart"),{
+type:'pie',
+data:{
+labels:["Quant","Logical","Verbal"],
+datasets:[{
+data:[70,65,60],
+backgroundColor:["#e50914","#ff4d4d","#999"]
+}]
+}
+});
+
+/* Coding */
+
+new Chart(document.getElementById("codingChart"),{
+type:'bar',
+data:{
+labels:["C","Java","Python"],
+datasets:[{
+label:"Problems Solved",
+data:[40,50,30],
+backgroundColor:"#e50914"
+}]
+},
+options:{plugins:{legend:{display:false}}}
+});
+
+/* Mock Test */
+
+new Chart(document.getElementById("mockChart"),{
+type:'line',
+data:{
+labels:["Test1","Test2","Test3","Test4","Test5"],
+datasets:[{
+label:"Score %",
+data:[60,65,70,75,80],
+borderColor:"#e50914",
+fill:false
+}]
+}
+});
+
+/* Skill Radar */
+
+new Chart(document.getElementById("skillChart"),{
+type:'radar',
+data:{
+labels:["DSA","Aptitude","Coding","Communication","Projects"],
+datasets:[{
+data:[70,75,65,60,55],
+borderColor:"#e50914",
+backgroundColor:"rgba(229,9,20,0.3)"
+}]
+}
+});
+
+</script>
+
+</body>
+</html>

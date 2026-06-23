@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PlacementGuide - Advanced ATS Resume Analyzer</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#111;
+    color:white;
+}
+.navbar{
+    background:black;
+    padding:20px 60px;
+    color:#e50914;
+    font-size:24px;
+    font-weight:bold;
+}
+.hero{
+    padding:60px;
+    background:linear-gradient(to right,#000,#1c1c1c);
+}
+.container{
+    padding:40px 60px;
+}
+.upload-card{
+    background:#1f1f1f;
+    padding:30px;
+    border-radius:15px;
+    display:flex;
+    gap:20px;
+}
+input[type=file]{
+    flex:1;
+    padding:10px;
+    border-radius:6px;
+    border:none;
+}
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:6px;
+    background:#e50914;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+.results{
+    margin-top:50px;
+    display:none;
+}
+.score-circle{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border:10px solid #e50914;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    font-weight:bold;
+    margin:auto;
+}
+.suggestion-card{
+    background:#1f1f1f;
+    padding:25px;
+    border-radius:12px;
+    margin-top:20px;
+    line-height:1.6;
+}
+.loading{
+    margin-top:20px;
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">PlacementGuide</div>
+
+<div class="hero">
+<h1>Advanced AI ATS Resume Analyzer</h1>
+<p>Detailed Career Coaching + ATS Optimization Guide</p>
+</div>
+
+<div class="container">
+
+<div class="upload-card">
+<input type="file" id="resumeFile" accept=".pdf">
+<button onclick="analyzeResume()">Analyze Resume</button>
+</div>
+
+<div class="loading" id="loadingText">Analyzing deeply... Please wait.</div>
+
+<div id="results" class="results">
+
+<div class="score-circle">
+<span id="score">0%</span>
+</div>
+
+<div id="suggestions"></div>
+
+</div>
+</div>
+
+<script>
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js";
+
+async function analyzeResume(){
+
+const fileInput=document.getElementById("resumeFile");
+
+if(!fileInput.files.length){
+alert("Upload Resume PDF");
+return;
+}
+
+document.getElementById("loadingText").style.display="block";
+document.getElementById("results").style.display="none";
+
+const reader=new FileReader();
+
+reader.onload=async function(){
+
+const typedarray=new Uint8Array(reader.result);
+const pdf=await pdfjsLib.getDocument(typedarray).promise;
+
+let resumeText="";
+
+for(let i=1;i<=pdf.numPages;i++){
+const page=await pdf.getPage(i);
+const textContent=await page.getTextContent();
+resumeText+=textContent.items.map(item=>item.str).join(" ");
+}
+
+calculateScore(resumeText);
+document.getElementById("loadingText").style.display="none";
+};
+
+reader.readAsArrayBuffer(fileInput.files[0]);
+}
+
+function calculateScore(resumeRaw){
+
+let resume=resumeRaw.toLowerCase().replace(/\s+/g," ").trim();
+
+let score=0;
+let suggestions=[];
+
+/* ======================
+CONTACT SECTION (10)
+====================== */
+let email=resume.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/);
+let phone=resume.match(/\+?\d[\d\s-]{8,}/);
+
+if(email && phone){
+score+=10;
+}else{
+suggestions.push(`
+<strong>Missing Complete Contact Information</strong><br>
+Why it matters: Recruiters cannot contact you easily.<br>
+How to fix:<br>
+• Add professional email (firstname.lastname@gmail.com)<br>
+• Add mobile number with country code<br>
+• Add LinkedIn profile URL<br>
+`);
+}
+
+/* ======================
+PROFESSIONAL SUMMARY (15)
+====================== */
+if(resume.includes("summary") || resume.includes("objective")){
+score+=15;
+}else{
+suggestions.push(`
+<strong>Add a Professional Summary</strong><br>
+Why it matters: Recruiters spend 6–8 seconds scanning resumes.<br>
+What to write:<br>
+Example:<br>
+"Full Stack Developer with 2+ years experience building scalable web applications using React, Node.js and MongoDB. Improved system performance by 35% and served 10,000+ users."<br>
+Keep it 3–4 lines only.
+`);
+}
+
+/* ======================
+PROJECT QUALITY (20)
+====================== */
+let projectCount=(resume.match(/project/g)||[]).length;
+let metrics=resume.match(/\d+%|\d+\+|\d+ users|\d+ clients|\d+ revenue/g);
+
+if(projectCount>=2 && metrics && metrics.length>=3){
+score+=20;
+}else{
+suggestions.push(`
+<strong>Improve Project Descriptions</strong><br>
+What ATS expects:<br>
+• 2–3 strong technical projects<br>
+• Each project should contain:<br>
+  - Problem statement<br>
+  - Technology stack<br>
+  - Your contribution<br>
+  - Measurable impact (%, users, performance improvement)<br>
+Example:<br>
+"Developed REST API using Node.js serving 5,000+ users with 40% improved response time."
+`);
+}
+
+/* ======================
+SKILLS STRUCTURE (15)
+====================== */
+if(resume.includes("skills")){
+score+=15;
+}else{
+suggestions.push(`
+<strong>Add Structured Technical Skills Section</strong><br>
+Divide skills into categories:<br>
+• Programming Languages<br>
+• Frameworks<br>
+• Databases<br>
+• Tools<br>
+This improves ATS keyword matching.
+`);
+}
+
+/* ======================
+ACTION VERBS (10)
+====================== */
+const strongVerbs=["developed","engineered","implemented","optimized","designed","built","led","achieved"];
+let verbCount=0;
+
+strongVerbs.forEach(v=>{
+let match=resume.match(new RegExp(v,"g"));
+if(match) verbCount+=match.length;
+});
+
+if(verbCount>=5){
+score+=10;
+}else{
+suggestions.push(`
+<strong>Use Strong Action Verbs</strong><br>
+Avoid weak phrases like:<br>
+• Worked on<br>
+• Responsible for<br>
+Replace with:<br>
+• Engineered<br>
+• Optimized<br>
+• Led<br>
+• Implemented<br>
+This increases professional impact.
+`);
+}
+
+/* ======================
+EXPERIENCE (15)
+====================== */
+if(resume.includes("experience") || resume.includes("intern")){
+score+=15;
+}else{
+suggestions.push(`
+<strong>Add Internship / Work Experience</strong><br>
+Even short internships matter.<br>
+Mention:<br>
+• Company name<br>
+• Role<br>
+• Duration<br>
+• 3–4 bullet achievements with metrics.
+`);
+}
+
+/* ======================
+LINKS (5)
+====================== */
+if(resume.includes("linkedin") && resume.includes("github")){
+score+=5;
+}else{
+suggestions.push(`
+<strong>Add LinkedIn & GitHub</strong><br>
+Why:<br>
+Recruiters verify projects & credibility online.<br>
+Make sure GitHub repositories are clean & documented.
+`);
+}
+
+/* ======================
+LENGTH (10)
+====================== */
+let wordCount=resume.split(" ").length;
+
+if(wordCount>=400 && wordCount<=900){
+score+=10;
+}else{
+suggestions.push(`
+<strong>Resume Length Optimization</strong><br>
+Ideal length:<br>
+• Freshers: 1 page<br>
+• Experienced: Max 2 pages<br>
+Add more quantified achievements if too short.
+`);
+}
+
+/* ======================
+FINAL
+====================== */
+if(score>100) score=100;
+
+document.getElementById("score").innerText=score+"%";
+
+const suggestionContainer=document.getElementById("suggestions");
+suggestionContainer.innerHTML="";
+
+if(suggestions.length===0){
+suggestions.push(`
+<strong>Outstanding Resume!</strong><br>
+Your resume meets high ATS standards.<br>
+To reach 100%:<br>
+• Tailor resume per job description<br>
+• Add more measurable achievements<br>
+• Keep formatting clean and simple.
+`);
+}
+
+suggestions.forEach(text=>{
+let card=document.createElement("div");
+card.className="suggestion-card";
+card.innerHTML=text;
+suggestionContainer.appendChild(card);
+});
+
+document.getElementById("results").style.display="block";
+}
+
+</script>
+
+</body>
+</html>

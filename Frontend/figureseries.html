@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Picture Analogies – Non Verbal Reasoning</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 60px;
+background:linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+z-index:1000;
+font-size:22px;
+font-weight:700;
+color:#e50914;
+letter-spacing:1px;
+}
+
+/* HERO */
+.hero{
+height:70vh;
+background:linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.3)),
+url('https://images.unsplash.com/photo-1581092580491-8243f6e0b719');
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:80px;
+}
+
+.hero h1{
+font-size:60px;
+color:#fff;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+color:#ddd;
+max-width:700px;
+}
+
+/* ROW SECTION */
+.row{
+margin:40px 60px;
+}
+
+.row h2{
+margin-bottom:20px;
+font-size:24px;
+color:#e50914;
+}
+
+.row-content{
+display:flex;
+gap:20px;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+
+.card{
+min-width:300px;
+background:#141414;
+padding:20px;
+border-radius:10px;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:scale(1.08);
+background:#e50914;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p, .card li{
+font-size:14px;
+color:#ccc;
+line-height:1.6;
+}
+
+.card:hover p,
+.card:hover li{
+color:#fff;
+}
+
+/* QUIZ SECTION */
+.quiz-section{
+background:#111;
+padding:60px;
+margin-top:40px;
+}
+
+.quiz-box{
+background:#1c1c1c;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
+transition:0.3s;
+}
+
+.quiz-box:hover{
+background:#e50914;
+}
+
+input[type="radio"]{
+margin-right:8px;
+accent-color:#fff;
+}
+
+button{
+background:#e50914;
+color:#fff;
+padding:12px 30px;
+border:none;
+border-radius:6px;
+font-weight:600;
+cursor:pointer;
+margin-top:20px;
+}
+
+button:hover{
+background:#b00610;
+}
+
+#result{
+margin-top:20px;
+font-size:20px;
+padding:20px;
+background:#222;
+border-left:5px solid #e50914;
+animation:fade 0.5s ease-in-out;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* SCROLLBAR */
+.row-content::-webkit-scrollbar{
+height:8px;
+}
+.row-content::-webkit-scrollbar-thumb{
+background:#e50914;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">PLACED</div>
+
+<div class="hero">
+<h1>Picture Analogies – Non-Verbal Reasoning</h1>
+<p>Learn to spot patterns and relationships in images. Practice figure series and visual analogies to ace your logical reasoning and non-verbal reasoning tests.</p>
+</div>
+
+<!-- THEORY ROW -->
+<div class="row">
+<h2>📖 Picture Analogies Theory</h2>
+<div class="row-content">
+
+<div class="card">
+<h3>What are Picture Analogies?</h3>
+<p>Picture analogies are visual comparisons where one pair of images has a relationship, and you must apply the same relationship to complete the second pair.</p>
+</div>
+
+<div class="card">
+<h3>Importance</h3>
+<p>They improve pattern recognition, logical reasoning, and problem-solving skills. Commonly used in aptitude tests, IQ tests, and competitive exams.</p>
+</div>
+
+<div class="card">
+<h3>Applications</h3>
+<p>Used in educational assessments, cognitive testing, and professional aptitude exams to evaluate abstract thinking and analytical ability.</p>
+</div>
+
+<div class="card">
+<h3>Key Tips</h3>
+<ul>
+<li>Observe shapes, sizes, and patterns carefully</li>
+<li>Focus on rotation, mirror images, and sequence changes</li>
+<li>Compare relationships between first pair to find the second</li>
+<li>Practice regularly to improve speed and accuracy</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- PRACTICE QUIZ ROW -->
+<div class="quiz-section">
+<h2>🎯 Picture Analogies Practice Questions</h2>
+
+<div class="quiz-box">
+1. If FISH : WATER :: BIRD : ?  
+<br><input type="radio" name="q1" value="0"> Sky  
+<br><input type="radio" name="q1" value="1"> Tree  
+<br><input type="radio" name="q1" value="2"> Air  
+<br><input type="radio" name="q1" value="3"> Nest
+</div>
+
+<div class="quiz-box">
+2. If CAT : KITTEN :: DOG : ?  
+<br><input type="radio" name="q2" value="0"> Bone  
+<br><input type="radio" name="q2" value="1"> Puppy  
+<br><input type="radio" name="q2" value="2"> Leash  
+<br><input type="radio" name="q2" value="3"> Bark
+</div>
+
+<div class="quiz-box">
+3. If PAINTER : BRUSH :: WRITER : ?  
+<br><input type="radio" name="q3" value="0"> Book  
+<br><input type="radio" name="q3" value="1"> Story  
+<br><input type="radio" name="q3" value="2"> Pen  
+<br><input type="radio" name="q3" value="3"> Paper
+</div>
+
+<div class="quiz-box">
+4. If WHEEL : CIRCLE :: BUILDING : ?  
+<br><input type="radio" name="q4" value="0"> Square  
+<br><input type="radio" name="q4" value="1"> Rectangle  
+<br><input type="radio" name="q4" value="2"> House  
+<br><input type="radio" name="q4" value="3"> Brick
+</div>
+
+<div class="quiz-box">
+5. If TREE : FOREST :: STAR : ?  
+<br><input type="radio" name="q5" value="0"> Sky  
+<br><input type="radio" name="q5" value="1"> Galaxy  
+<br><input type="radio" name="q5" value="2"> Moon  
+<br><input type="radio" name="q5" value="3"> Light
+</div>
+
+<div class="quiz-box">
+6. If CLOCK : TIME :: THERMOMETER : ?  
+<br><input type="radio" name="q6" value="0"> Mercury  
+<br><input type="radio" name="q6" value="1"> Glass  
+<br><input type="radio" name="q6" value="2"> Temperature  
+<br><input type="radio" name="q6" value="3"> Weather
+</div>
+
+<div class="quiz-box">
+7. If FLOWER : GARDEN :: BOOK : ?  
+<br><input type="radio" name="q7" value="0"> Page  
+<br><input type="radio" name="q7" value="1"> Library  
+<br><input type="radio" name="q7" value="2"> Story  
+<br><input type="radio" name="q7" value="3"> Author
+</div>
+
+<div class="quiz-box">
+8. If CAMERA : PHOTOGRAPH :: PRINTER : ?  
+<br><input type="radio" name="q8" value="0"> Ink  
+<br><input type="radio" name="q8" value="1"> Paper  
+<br><input type="radio" name="q8" value="2"> Document  
+<br><input type="radio" name="q8" value="3"> Machine
+</div>
+
+<div class="quiz-box">
+9. If SHOE : FOOT :: GLOVE : ?  
+<br><input type="radio" name="q9" value="0"> Hand  
+<br><input type="radio" name="q9" value="1"> Finger  
+<br><input type="radio" name="q9" value="2"> Warm  
+<br><input type="radio" name="q9" value="3"> Cloth
+</div>
+
+<div class="quiz-box">
+10. If BEE : HONEY :: COW : ?  
+<br><input type="radio" name="q10" value="0"> Grass  
+<br><input type="radio" name="q10" value="1"> Milk  
+<br><input type="radio" name="q10" value="2"> Farm  
+<br><input type="radio" name="q10" value="3"> Barn
+</div>
+
+<button onclick="submitTest()">Submit</button>
+<div id="result"></div>
+</div>
+
+<script>
+const answers={q1:2,q2:1,q3:2,q4:1,q5:1,q6:2,q7:1,q8:2,q9:0,q10:1};
+
+function submitTest(){
+let score=0;
+for(let q in answers){
+let selected=document.querySelector(`input[name="${q}"]:checked`);
+if(selected && parseInt(selected.value)===answers[q]){
+score++;
+}
+}
+
+let level=
+score>=9?"🔥 Excellent!":
+score>=7?"🚀 Very Good":
+score>=5?"👍 Good Effort":
+"⚠️ Revise and Practice";
+
+document.getElementById("result").innerHTML=
+`Score: ${score}/10 <br><br> ${level}`;
+}
+</script>
+
+</body>
+</html>

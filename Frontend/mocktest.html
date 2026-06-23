@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mock Tests - PLACED</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:#0c0c0c;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+background:linear-gradient(to right,#000,#1a1a1a);
+}
+
+.logo{
+color:#ff1e1e;
+font-size:26px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#ff1e1e;
+font-weight:600;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+color:white;
+}
+
+.user-area{
+text-align:right;
+}
+
+.logout-btn{
+margin-top:5px;
+background:#ff3c66;
+border:none;
+padding:10px 22px;
+border-radius:10px;
+color:white;
+cursor:pointer;
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+padding:80px 80px 40px;
+}
+
+.hero h1{
+font-size:50px;
+}
+
+.hero p{
+color:#bbb;
+margin-top:10px;
+}
+
+/* TEST CARDS */
+
+.test-section{
+padding:60px 80px;
+display:flex;
+gap:40px;
+justify-content:center;
+}
+
+.test-card{
+background:#1b1b1b;
+padding:35px;
+width:300px;
+border-radius:15px;
+text-align:center;
+transition:0.4s;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.test-card:hover{
+transform:translateY(-10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.8);
+}
+
+.test-card h2{
+margin-bottom:10px;
+}
+
+.test-card p{
+color:#aaa;
+font-size:14px;
+}
+
+.start-btn{
+margin-top:20px;
+padding:12px 28px;
+border:none;
+background:#ff1e1e;
+color:white;
+font-weight:bold;
+border-radius:8px;
+cursor:pointer;
+}
+
+.start-btn:hover{
+background:#ff3c3c;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">PLACED</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="company.html">Company Wise</a>
+<a href="aptitype.html">Aptitude</a>
+<a href="codingnew.html">Coding</a>
+<a href="mocktest.html">Mock Tests</a>
+<a href="resume.html">Check Resume</a>
+</div>
+
+<div class="user-area">
+<div id="usernameDisplay"></div>
+<button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+<h1>Mock Test Assessments</h1>
+<p>Practice aptitude and coding tests similar to real placement exams.</p>
+</div>
+
+<!-- TEST OPTIONS -->
+
+<div class="test-section">
+
+<div class="test-card">
+
+<h2>Aptitude Assessment</h2>
+
+<p>
+Quantitative Aptitude  
+Logical Reasoning  
+Verbal Ability
+</p>
+<a href="aptitude-assessment.html">
+
+<button class="start-btn" onclick="startTest('aptitude')">
+Take Assessment
+</a>
+</button>
+
+</div>
+
+
+<div class="test-card">
+
+<h2>Coding Assessment</h2>
+
+<p>
+DSA Problems  
+Coding Challenges  
+Interview Coding Rounds
+</p>
+<a href="codingnew.html">
+
+<button class="start-btn" onclick="startTest('coding')">
+Take Assessment
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* SHOW USER NAME */
+
+const username = localStorage.getItem("username");
+
+if(username){
+document.getElementById("usernameDisplay").innerText = "Hey, " + username;
+}
+
+/* START TEST */
+
+function startTest(type){
+
+if(type === "aptitude"){
+window.location.href = "aptitude-assessment.html";
+}
+
+if(type === "coding"){
+window.location.href = "codingnew.html";
+}
+
+}
+
+/* LOGOUT */
+
+function logout(){
+
+localStorage.removeItem("userLoggedIn");
+localStorage.removeItem("username");
+
+window.location.href = "index.html";
+
+}
+
+</script>
+
+</body>
+</html>

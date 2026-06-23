@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aptitude</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="left-nav">
+      <h2 class="logo">PLACED</h2>
+
+      <ul>
+        <li>Home</li>
+
+        <li onclick="checkLogin('company.html')" style="cursor:pointer;">
+          Company Wise
+        </li>
+
+        <li onclick="checkLogin('aptitype.html')" style="cursor:pointer;">
+          Aptitude
+        </li>
+
+        <li onclick="checkLogin('codingnew.html')" style="cursor:pointer;">
+          Coding
+        </li>
+
+        <li onclick="checkLogin('mocktest.html')" style="cursor:pointer;">
+          Mock Tests
+        </li>
+
+        <li onclick="checkLogin('resume.html')" style="cursor:pointer;">
+          Check Resume
+        </li>
+      </ul>
+    </div>
+
+<div class="user-area">
+<div id="usernameDisplay"></div>
+<button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+</div>
+
+
+    <nav class="navbar">
+        <h2>Placement Guide</h2>
+    </nav>
+
+    <h1 class="page-title">Quantitative Aptitude</h1>
+
+    <div id="topicContainer" class="cards"></div>
+
+    <script src="aptitude.js"></script>
+
+</body>
+</html>

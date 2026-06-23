@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Feedback - PLACED</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#0b0b0b;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 80px;
+background:linear-gradient(to right,#000,#111);
+}
+
+.logo{
+color:#ff1e1e;
+font-size:26px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#ff2a2a;
+font-weight:500;
+}
+
+.nav-links a:hover{
+color:white;
+}
+
+.right-nav{
+display:flex;
+gap:20px;
+}
+
+.logout{
+background:#ff416c;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#aaa;
+}
+
+/* FEEDBACK BOX */
+
+.feedback-section{
+display:flex;
+justify-content:center;
+padding:40px;
+}
+
+.feedback-box{
+background:#161616;
+padding:40px;
+width:420px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,0.6);
+}
+
+/* INPUTS */
+
+.feedback-box input,
+.feedback-box textarea{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:6px;
+background:#222;
+color:white;
+}
+
+.feedback-box textarea{
+height:120px;
+resize:none;
+}
+
+/* STAR RATING */
+
+.star-rating{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:20px 0;
+font-size:28px;
+cursor:pointer;
+}
+
+.star{
+color:#555;
+transition:0.2s;
+}
+
+.star.active{
+color:#ffd700;
+}
+
+/* BUTTON */
+
+.submit-btn{
+width:100%;
+padding:12px;
+background:#ff2a2a;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.submit-btn:hover{
+background:#ff4444;
+}
+
+/* FOOTER */
+
+.footer{
+background:#000;
+text-align:center;
+padding:25px;
+color:#777;
+margin-top:80px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">PLACED</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="company.html">Company Wise</a>
+<a href="aptitype.html">Aptitude</a>
+<a href="codingnew.html">Coding</a>
+<a href="mocktest.html">Mock Tests</a>
+<a href="resume.html">Check Resume</a>
+</div>
+
+<div class="right-nav">
+<span>Hey, Neha</span>
+<button class="logout">Logout</button>
+</div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>Feedback</h1>
+
+<p>Your feedback helps us improve the platform</p>
+
+</div>
+
+
+<!-- FEEDBACK FORM -->
+
+<div class="feedback-section">
+
+<div class="feedback-box">
+
+<form id="feedbackForm">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="email" id="email" placeholder="Your Email" required>
+
+<div class="star-rating">
+
+<span class="star" data-value="1">★</span>
+<span class="star" data-value="2">★</span>
+<span class="star" data-value="3">★</span>
+<span class="star" data-value="4">★</span>
+<span class="star" data-value="5">★</span>
+
+</div>
+
+<textarea id="message" placeholder="Your Feedback"></textarea>
+
+<button type="submit" class="submit-btn">
+Submit Feedback
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<p>© 2026 PLACED | Placement Preparation Platform</p>
+
+</div>
+
+
+<script>
+
+/* STAR RATING */
+
+const stars = document.querySelectorAll(".star");
+let rating = 0;
+
+stars.forEach(star =>{
+
+star.addEventListener("click", function(){
+
+rating = this.dataset.value;
+
+stars.forEach(s => s.classList.remove("active"));
+
+for(let i=0;i<rating;i++){
+stars[i].classList.add("active");
+}
+
+});
+
+});
+
+
+/* FORM SUBMIT */
+
+document.getElementById("feedbackForm")
+.addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+try{
+
+const response = await fetch("http://localhost:5000/api/feedback",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body: JSON.stringify({
+name,
+email,
+rating,
+message
+})
+
+});
+
+const data = await response.json();
+
+alert(data.message);
+
+document.getElementById("feedbackForm").reset();
+
+stars.forEach(s => s.classList.remove("active"));
+rating = 0;
+
+}catch(error){
+
+console.log(error);
+alert("Error sending feedback");
+
+}
+
+});
+
+</script>
+
+</body>
+</html>

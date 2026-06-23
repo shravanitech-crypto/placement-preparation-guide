@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Placement Prep – Reading & Aptitude</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#141414;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px 60px;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+  z-index:1000;
+  font-size:24px;
+  font-weight:700;
+  color:#e50914;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* HERO */
+.hero{
+  height:60vh;
+  background:linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)),
+  url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 60px;
+}
+
+.hero h1{
+  font-size:60px;
+  color:#fff;
+  margin-bottom:20px;
+  text-shadow:2px 2px 8px #000;
+}
+
+.hero p{
+  font-size:20px;
+  color:#ddd;
+  max-width:700px;
+  line-height:1.6;
+  text-shadow:1px 1px 5px #000;
+}
+
+/* ROW SECTIONS */
+.row{
+  margin:40px 60px;
+}
+
+.row h2{
+  margin-bottom:20px;
+  font-size:28px;
+  color:#e50914;
+}
+
+.row-content{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  padding-bottom:10px;
+}
+
+.card{
+  min-width:300px;
+  background:#1c1c1c;
+  padding:20px;
+  border-radius:10px;
+  transition:0.3s;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+.card:hover{
+  transform:scale(1.08);
+  background:#e50914;
+}
+
+.card h3{
+  margin-bottom:10px;
+  font-size:20px;
+}
+
+.card p, .card li{
+  font-size:14px;
+  color:#ccc;
+  line-height:1.6;
+}
+
+.card:hover p,
+.card:hover li{
+  color:#fff;
+}
+
+/* SCROLLBAR */
+.row-content::-webkit-scrollbar{
+  height:8px;
+}
+.row-content::-webkit-scrollbar-thumb{
+  background:#e50914;
+  border-radius:10px;
+}
+
+/* QUIZ SECTION */
+.quiz-section{
+  background:#111;
+  padding:60px;
+  margin-top:40px;
+  border-top:2px solid #e50914;
+  border-bottom:2px solid #e50914;
+}
+
+.quiz-section h2{
+  font-size:28px;
+  color:#e50914;
+  margin-bottom:30px;
+}
+
+.quiz-box{
+  background:#1c1c1c;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:8px;
+  transition:0.3s;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.quiz-box:hover{
+  background:#e50914;
+}
+
+input[type="radio"]{
+  margin-right:8px;
+  accent-color:#fff;
+}
+
+button{
+  background:#e50914;
+  color:#fff;
+  padding:12px 30px;
+  border:none;
+  border-radius:6px;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:20px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#b00610;
+}
+
+#result{
+  margin-top:20px;
+  font-size:20px;
+  padding:20px;
+  background:#222;
+  border-left:5px solid #e50914;
+  animation:fade 0.5s ease-in-out;
+}
+
+@keyframes fade{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero h1{font-size:48px;}
+  .row h2{font-size:24px;}
+  .hero{padding:60px 20px;}
+  .row{margin:20px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">PLACED</div>
+
+<div class="hero">
+<h1>Reading Comprehension</h1>
+<p>Sharpen your comprehension and problem-solving skills. Practice reading passages, logical reasoning, and aptitude questions just like top placement tests.</p>
+</div>
+
+<!-- READING COMPREHENSION ROW -->
+<div class="row">
+<h2> Reading Comprehension Theory</h2>
+<div class="row-content">
+
+<div class="card">
+<h3>Main Idea</h3>
+<p>Recognize what the passage is primarily about. Look for repeated themes and summary sentences.</p>
+</div>
+
+<div class="card">
+<h3>Supporting Details</h3>
+<p>Pick out facts, examples, or reasons that back up the main idea.</p>
+</div>
+
+<div class="card">
+<h3>Making Inferences</h3>
+<p>Read between the lines to understand ideas that are not directly stated.</p>
+</div>
+
+<div class="card">
+<h3>Author’s Tone & Purpose</h3>
+<p>Identify the writer’s attitude and reason for writing the text.</p>
+</div>
+
+<div class="card">
+<h3>Drawing Conclusions</h3>
+<p>Combine information from the text with your own reasoning to reach logical outcomes.</p>
+</div>
+
+</div>
+</div>
+
+<!-- APTITUDE ROW -->
+<div class="row">
+<h2>📊 Aptitude Tips & Tricks</h2>
+<div class="row-content">
+
+<div class="card">
+<h3>Speed Math</h3>
+<ul>
+<li>Use shortcuts for multiplication/division</li>
+<li>Approximation methods</li>
+<li>Vedic Math tricks</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Logical Reasoning</h3>
+<ul>
+<li>Identify patterns quickly</li>
+<li>Practice seating arrangements, puzzles</li>
+<li>Data interpretation shortcuts</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Time Management</h3>
+<p>Attempt easier questions first. Don’t get stuck on tough ones.</p>
+</div>
+
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section">
+<h2>🎯 Practice Quiz</h2>
+
+<div class="quiz-box">
+1. What is the main idea of a passage?  
+<br><input type="radio" name="q1" value="0"> Details of each sentence  
+<br><input type="radio" name="q1" value="1"> The central theme or topic
+</div>
+
+<div class="quiz-box">
+2. Choose the correct inference: "He smiled despite failing the test."  
+<br><input type="radio" name="q2" value="0"> He is angry  
+<br><input type="radio" name="q2" value="1"> He is keeping a positive attitude
+</div>
+
+<div class="quiz-box">
+3. 12 × 25 = ?  
+<br><input type="radio" name="q3" value="0"> 250  
+<br><input type="radio" name="q3" value="1"> 300
+</div>
+
+<div class="quiz-box">
+4. Which of the following is a synonym of “Scarce”?  
+<br><input type="radio" name="q4" value="0"> Plentiful  
+<br><input type="radio" name="q4" value="1"> Rare
+</div>
+
+<div class="quiz-box">
+5. If 5x = 25, x = ?  
+<br><input type="radio" name="q5" value="0"> 5  
+<br><input type="radio" name="q5" value="1"> 25
+</div>
+
+<button onclick="submitTest()">Submit</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+const answers={q1:1,q2:1,q3:1,q4:1,q5:0};
+
+function submitTest(){
+  let score=0;
+  for(let q in answers){
+    let selected=document.querySelector(`input[name="${q}"]:checked`);
+    if(selected && parseInt(selected.value)===answers[q]){
+      score++;
+    }
+  }
+
+  let level=
+    score>=5?"🔥 Placement Ready!":
+    score>=3?"🚀 Good Job":
+    "⚠️ Revise Again";
+
+  document.getElementById("result").innerHTML=
+    `Score: ${score}/5 <br><br> ${level}`;
+}
+</script>
+
+</body>
+</html>

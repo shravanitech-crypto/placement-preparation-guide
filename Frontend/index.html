@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<title>Placed - Placement Guide</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ---------------- NAVBAR USER SECTION ---------------- */
+
+.right-nav{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+/* USER BOX */
+
+.user-box{
+display:flex;
+align-items:center;
+gap:12px;
+background:#141414;
+padding:6px 14px;
+border-radius:30px;
+box-shadow:0 0 10px rgba(255,0,0,0.25);
+}
+
+/* CLICKABLE PROGRESS RING */
+
+.progress-ring{
+
+width:46px;
+height:46px;
+
+border-radius:50%;
+
+cursor:pointer;
+
+background:
+conic-gradient(#ff2a2a 0%, #222 0%);
+
+box-shadow:
+0 0 10px rgba(255,0,0,0.6),
+inset 0 0 6px rgba(0,0,0,0.8);
+
+transition:0.3s;
+
+}
+
+/* Hover animation */
+
+.progress-ring:hover{
+
+transform:scale(1.1);
+
+box-shadow:
+0 0 15px rgba(255,0,0,0.9);
+
+}
+
+/* USER NAME */
+
+#welcomeUser{
+font-weight:bold;
+font-size:16px;
+}
+
+/* LOGOUT BUTTON */
+
+#logoutBtn{
+background:#ff416c;
+border:none;
+padding:8px 18px;
+border-radius:20px;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+#logoutBtn:hover{
+background:#ff2a2a;
+}
+
+/* ---------------- EXPLORE SECTION ---------------- */
+
+.explore-section{
+padding:80px 120px;
+background:#0b0b0b;
+text-align:center;
+}
+
+.explore-title{
+font-size:32px;
+margin-bottom:50px;
+}
+
+.explore-container{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+/* CARDS */
+
+.explore-card{
+background:#161616;
+padding:30px;
+width:280px;
+border-radius:12px;
+transition:0.3s;
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.explore-card:hover{
+transform:translateY(-10px);
+box-shadow:0 10px 25px rgba(0,0,0,0.8);
+}
+
+.explore-card h3{
+color:white;
+margin-bottom:10px;
+}
+
+.explore-card p{
+color:#bbb;
+font-size:14px;
+margin-bottom:20px;
+}
+
+.explore-btn{
+background:#ff1e1e;
+border:none;
+padding:10px 18px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.explore-btn:hover{
+background:#ff3b3b;
+}
+
+/* FOOTER */
+
+.footer{
+background:#000;
+text-align:center;
+padding:20px;
+color:#888;
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<div class="left-nav">
+
+<h2 class="logo">PLACED</h2>
+
+<ul>
+
+<li>Home</li>
+
+<li onclick="checkLogin('companywise.html')" style="cursor:pointer;">
+Company Wise
+</li>
+
+<li onclick="checkLogin('aptidashboard.html')" style="cursor:pointer;">
+Aptitude
+</li>
+
+<li onclick="checkLogin('codingnew.html')" style="cursor:pointer;">
+Coding
+</li>
+
+<li onclick="checkLogin('mocktest.html')" style="cursor:pointer;">
+Mock Tests
+</li>
+
+<li onclick="checkLogin('resume.html')" style="cursor:pointer;">
+Check Resume
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- RIGHT NAV -->
+
+<div class="right-nav">
+
+<a href="login.html" class="btn login-btn" id="loginBtn">Login</a>
+<a href="signup.html" class="btn signup-btn" id="signupBtn">Sign Up</a>
+
+<div class="user-box" id="userSection" style="display:none;">
+
+<!-- CLICKABLE PROGRESS RING -->
+
+<div class="progress-ring" id="progressRing" onclick="openProgress()"></div>
+
+<span id="welcomeUser"></span>
+
+<button id="logoutBtn">Logout</button>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>THE FAANG<br>MASTERCLASS</h1>
+
+<p>Master DSA, System Design & Crack Top Tech Companies</p>
+
+<div class="hero-buttons">
+
+<button class="play-btn" onclick="checkLogin('mocktest.html')">
+▶ Play
+</button>
+
+<button class="info-btn" onclick="checkLogin('aptitype.html')">
+More Info
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTENT ROW -->
+
+<section class="row">
+
+<h2>Top 10 in Your University</h2>
+
+<div class="card-container">
+
+<div class="card" onclick="checkLogin('codingnew.html')">
+Python Basics
+</div>
+
+<div class="card" onclick="checkLogin('aptitype.html')">
+SQL Interview Tips
+</div>
+
+<div class="card" onclick="checkLogin('codingnew.html')">
+Java OOPS
+</div>
+
+<div class="card" onclick="checkLogin('aptitype.html')">
+Aptitude Prep
+</div>
+
+<div class="card" onclick="checkLogin('company.html')">
+Amazon SDE-1
+</div>
+
+</div>
+
+</section>
+
+
+<section class="row">
+
+<h2>Because You Watched Java</h2>
+
+<div class="card-container">
+
+<div class="card" onclick="checkLogin('codingnew.html')">
+Spring Boot
+</div>
+
+<div class="card" onclick="checkLogin('codingnew.html')">
+Microservices
+</div>
+
+<div class="card" onclick="checkLogin('codingnew.html')">
+System Design
+</div>
+
+<div class="card" onclick="checkLogin('aptitype.html')">
+DBMS
+</div>
+
+<div class="card" onclick="checkLogin('mocktest.html')">
+HR Interview
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXPLORE SECTION -->
+
+<section class="explore-section">
+
+<h2 class="explore-title">Explore More</h2>
+
+<div class="explore-container">
+
+<div class="explore-card">
+<h3>About Us</h3>
+<p>Learn about the PLACED platform and how we help students crack placements.</p>
+<a href="about.html">
+<button class="explore-btn">Read More</button>
+</a>
+</div>
+
+<div class="explore-card">
+<h3>Contact Us</h3>
+<p>Reach our support team if you need help with tests or preparation.</p>
+<a href="contact.html">
+<button class="explore-btn">Contact</button>
+</a>
+</div>
+
+<div class="explore-card">
+<h3>Feedback</h3>
+<p>Share your suggestions and help us improve the platform.</p>
+<a href="feedback.html">
+<button class="explore-btn">Send Feedback</button>
+</a>
+</div>
+
+</div>
+
+</section>
+
+
+<footer class="footer">
+<p>© 2026 PLACED | Placement Preparation Platform</p>
+</footer>
+
+
+<script src="session.js"></script>
+
+
+<script>
+
+/* SESSION + PROGRESS */
+
+document.addEventListener("DOMContentLoaded",function(){
+
+const loggedIn = localStorage.getItem("userLoggedIn");
+const username = localStorage.getItem("username");
+
+const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
+const userSection = document.getElementById("userSection");
+
+if(loggedIn){
+
+loginBtn.style.display="none";
+signupBtn.style.display="none";
+
+userSection.style.display="flex";
+
+document.getElementById("welcomeUser").innerText="Hey "+username;
+
+}
+
+/* LOAD MOCK TEST PROGRESS */
+
+let progress = localStorage.getItem("mockProgress") || 0;
+
+document.getElementById("progressRing").style.background =
+`conic-gradient(#ff2a2a ${progress}%, #222 ${progress}%)`;
+
+});
+
+
+/* OPEN PROGRESS PAGE */
+
+function openProgress(){
+
+window.location.href="progress.html";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Contact - PLACED</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#0b0b0b;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 80px;
+background:linear-gradient(to right,#000,#111);
+}
+
+.logo{
+color:#ff1e1e;
+font-size:26px;
+font-weight:bold;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#ff2a2a;
+font-weight:500;
+}
+
+.nav-links a:hover{
+color:white;
+}
+
+.right-nav{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.logout{
+background:#ff416c;
+border:none;
+padding:10px 20px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:100px 20px;
+background:linear-gradient(to right,#000,#111);
+}
+
+.hero h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+.hero p{
+color:#aaa;
+}
+
+/* CONTACT SECTION */
+
+.contact-section{
+padding:60px 120px;
+display:flex;
+justify-content:center;
+}
+
+.contact-box{
+background:#161616;
+padding:40px;
+border-radius:12px;
+width:400px;
+box-shadow:0 0 15px rgba(0,0,0,0.6);
+}
+
+.contact-box h2{
+text-align:center;
+margin-bottom:20px;
+}
+
+.contact-box input,
+.contact-box textarea{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:6px;
+background:#222;
+color:white;
+}
+
+.contact-box textarea{
+height:120px;
+resize:none;
+}
+
+.contact-btn{
+width:100%;
+padding:12px;
+background:#ff2a2a;
+border:none;
+border-radius:6px;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+.contact-btn:hover{
+background:#ff4444;
+}
+
+/* INFO */
+
+.contact-info{
+text-align:center;
+margin-top:40px;
+color:#aaa;
+}
+
+/* FOOTER */
+
+.footer{
+background:#000;
+text-align:center;
+padding:25px;
+color:#777;
+margin-top:80px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">PLACED</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="company.html">Company Wise</a>
+<a href="aptitype.html">Aptitude</a>
+<a href="codingnew.html">Coding</a>
+<a href="mocktest.html">Mock Tests</a>
+<a href="resume.html">Check Resume</a>
+</div>
+
+<div class="right-nav">
+<span>Hey, neha</span>
+<button class="logout">Logout</button>
+</div>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>Contact Us</h1>
+
+<p>Have questions? We’re here to help you.</p>
+
+</div>
+
+
+<!-- CONTACT FORM -->
+
+<div class="contact-section">
+
+<div class="contact-box">
+
+<h2>Send a Message</h2>
+
+<form id="contactForm">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="email" id="email" placeholder="Your Email" required>
+
+<textarea id="message" placeholder="Your Message" required></textarea>
+
+<button type="submit" class="contact-btn">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- CONTACT INFO -->
+
+<div class="contact-info">
+
+<p>Email: support@placed.com</p>
+<p>Phone: +91 9876543210</p>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<p>© 2026 PLACED | Placement Preparation Platform</p>
+
+</div>
+<script>
+
+document.getElementById("contactForm").addEventListener("submit", async function(e){
+
+e.preventDefault();   // stop page reload
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+try{
+
+const response = await fetch("http://localhost:5000/api/contact",{
+
+method: "POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body: JSON.stringify({
+name: name,
+email: email,
+message: message
+})
+
+});
+
+const data = await response.json();
+
+alert(data.message);
+
+document.getElementById("contactForm").reset();
+
+}catch(error){
+
+alert("Error sending message");
+
+}
+
+});
+
+</script></body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Placement Vocabulary – Netflix Edition</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#000;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 60px;
+background:linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+z-index:1000;
+font-size:22px;
+font-weight:700;
+color:#e50914;
+letter-spacing:1px;
+}
+
+/* HERO */
+.hero{
+height:70vh;
+background:linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.3)),
+url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2');
+background-size:cover;
+background-position:center;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:80px;
+}
+
+.hero h1{
+font-size:60px;
+color:#fff;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+color:#ddd;
+max-width:600px;
+}
+
+/* ROW SECTION */
+.row{
+margin:40px 60px;
+}
+
+.row h2{
+margin-bottom:20px;
+font-size:24px;
+}
+
+.row-content{
+display:flex;
+gap:20px;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+
+.card{
+min-width:280px;
+background:#141414;
+padding:20px;
+border-radius:10px;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+transform:scale(1.08);
+background:#e50914;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.card p, .card li{
+font-size:14px;
+color:#ccc;
+line-height:1.6;
+}
+
+.card:hover p,
+.card:hover li{
+color:#fff;
+}
+
+/* QUIZ SECTION */
+.quiz-section{
+background:#111;
+padding:60px;
+margin-top:40px;
+}
+
+.quiz-box{
+background:#1c1c1c;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
+transition:0.3s;
+}
+
+.quiz-box:hover{
+background:#e50914;
+}
+
+input[type="radio"]{
+margin-right:8px;
+accent-color:#fff;
+}
+
+button{
+background:#e50914;
+color:#fff;
+padding:12px 30px;
+border:none;
+border-radius:6px;
+font-weight:600;
+cursor:pointer;
+margin-top:20px;
+}
+
+button:hover{
+background:#b00610;
+}
+
+#result{
+margin-top:20px;
+font-size:20px;
+padding:20px;
+background:#222;
+border-left:5px solid #e50914;
+animation:fade 0.5s ease-in-out;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+/* SCROLLBAR */
+.row-content::-webkit-scrollbar{
+height:8px;
+}
+.row-content::-webkit-scrollbar-thumb{
+background:#e50914;
+border-radius:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">PLACED</div>
+
+<div class="hero">
+<h1>Vocabulary & Grammar Mastery</h1>
+<p>Engineer your communication skills. Crack placements with confidence. Master high-frequency verbal topics asked in top IT companies.</p>
+</div>
+
+<!-- VOCABULARY ROW -->
+<div class="row">
+<h2> High Frequency Vocabulary</h2>
+<div class="row-content">
+
+<div class="card">
+<h3>Synonyms</h3>
+<ul>
+<li>Abundant – Plentiful</li>
+<li>Candid – Honest</li>
+<li>Expand – Enlarge</li>
+<li>Accurate – Correct</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Antonyms</h3>
+<ul>
+<li>Scarce – Abundant</li>
+<li>Rigid – Flexible</li>
+<li>Inferior – Superior</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Confused Words</h3>
+<ul>
+<li>Affect – Effect</li>
+<li>Accept – Except</li>
+<li>Principal – Principle</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>One Word Substitution</h3>
+<ul>
+<li>Bibliophile</li>
+<li>Polyglot</li>
+<li>Autobiography</li>
+</ul>
+</div>
+
+</div>
+</div>
+
+<!-- GRAMMAR ROW -->
+<div class="row">
+<h2>📘 Advanced Grammar Concepts</h2>
+<div class="row-content">
+
+<div class="card">
+<h3>Conditionals</h3>
+<p>If + Present → will</p>
+<p>If + Past → would</p>
+<p>If + had + V3 → would have</p>
+</div>
+
+<div class="card">
+<h3>Modals</h3>
+<p>Can – ability</p>
+<p>Must – obligation</p>
+<p>Should – advice</p>
+</div>
+
+<div class="card">
+<h3>Error Rules</h3>
+<p>Between – two</p>
+<p>Among – more than two</p>
+<p>Fewer – countable</p>
+<p>Less – uncountable</p>
+</div>
+
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-section">
+<h2>🎯 Placement Practice Quiz</h2>
+
+<div class="quiz-box">
+1. Choose synonym of Candid:
+<br><input type="radio" name="q1" value="0"> Clever
+<br><input type="radio" name="q1" value="1"> Honest
+</div>
+
+<div class="quiz-box">
+2. If I ____ rich, I would travel.
+<br><input type="radio" name="q2" value="0"> am
+<br><input type="radio" name="q2" value="1"> were
+</div>
+
+<div class="quiz-box">
+3. There are ____ students in class.
+<br><input type="radio" name="q3" value="0"> less
+<br><input type="radio" name="q3" value="1"> fewer
+</div>
+
+<div class="quiz-box">
+4. A number of employees ____ absent.
+<br><input type="radio" name="q4" value="0"> is
+<br><input type="radio" name="q4" value="1"> are
+</div>
+
+<div class="quiz-box">
+5. She has worked here ____ 2021.
+<br><input type="radio" name="q5" value="0"> since
+<br><input type="radio" name="q5" value="1"> for
+</div>
+
+<div class="quiz-box">
+6. He is capable ____ solving the problem.
+<br><input type="radio" name="q6" value="0"> of
+<br><input type="radio" name="q6" value="1"> to
+</div>
+
+<div class="quiz-box">
+7. Neither Ram nor his friends ____ ready.
+<br><input type="radio" name="q7" value="0"> is
+<br><input type="radio" name="q7" value="1"> are
+</div>
+
+<div class="quiz-box">
+8. Choose antonym of Inferior:
+<br><input type="radio" name="q8" value="0"> Superior
+<br><input type="radio" name="q8" value="1"> Weak
+</div>
+
+<div class="quiz-box">
+9. She is ___ honest engineer.
+<br><input type="radio" name="q9" value="0"> a
+<br><input type="radio" name="q9" value="1"> an
+</div>
+
+<div class="quiz-box">
+10. If she had studied, she ____ passed.
+<br><input type="radio" name="q10" value="0"> would have
+<br><input type="radio" name="q10" value="1"> will have
+</div>
+
+<button onclick="submitTest()">Submit</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+const answers={
+q1:1,q2:1,q3:1,q4:1,q5:0,
+q6:0,q7:1,q8:0,q9:1,q10:0
+};
+
+function submitTest(){
+let score=0;
+for(let q in answers){
+let selected=document.querySelector(`input[name="${q}"]:checked`);
+if(selected && parseInt(selected.value)===answers[q]){
+score++;
+}
+}
+
+let level=
+score>=9?"🔥 Placement Ready!":
+score>=7?"🚀 Very Good":
+score>=5?"👍 Good Progress":
+"⚠️ Revise Again";
+
+document.getElementById("result").innerHTML=
+`Score: ${score}/10 <br><br> ${level}`;
+}
+</script>
+
+</body>
+</html>

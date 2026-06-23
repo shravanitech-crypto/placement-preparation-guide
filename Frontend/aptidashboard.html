@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aptitude Dashboard – PLACED Style</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body {
+    background:#141414;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 60px;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    z-index:1000;
+    font-size:24px;
+    font-weight:700;
+    color:#e50914;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* HERO */
+.hero {
+    height:60vh;
+    background:linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)),
+    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:80px 60px;
+}
+
+.hero h1 {
+    font-size:60px;
+    color:#fff;
+    margin-bottom:20px;
+    text-shadow:2px 2px 8px #000;
+}
+
+.hero p {
+    font-size:20px;
+    color:#ddd;
+    max-width:700px;
+    line-height:1.6;
+    text-shadow:1px 1px 5px #000;
+}
+
+/* GRID CARDS */
+.container {
+    padding:40px 60px 100px 60px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap:50px;
+}
+
+.card-wrapper {
+    position:relative;
+}
+
+.card {
+    background:#1c1c1c;
+    border-radius:12px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.5);
+}
+
+.card:hover {
+    transform:scale(1.05);
+    background:#e50914;
+    color:#fff;
+}
+
+.topics {
+    display:none;
+    margin-top:15px;
+    background:#222;
+    border-radius:10px;
+    padding:20px;
+    color:#fff;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    z-index:100;
+}
+
+.topics h3 {
+    margin-bottom:15px;
+    font-size:16px;
+    color:#e50914;
+}
+
+.topics ul {
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.topics li {
+    padding:8px 0;
+    border-bottom:1px solid #444;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.topics li:last-child {
+    border-bottom:none;
+}
+
+.topics li:hover {
+    color:#e50914;
+    font-weight:600;
+}
+
+a {
+    text-decoration:none;
+    color:#fff;
+}
+
+a:hover {
+    color:#e50914;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .hero h1{font-size:48px;}
+    .hero{padding:60px 20px;}
+    .container{padding:30px 20px 80px 20px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">PLACED</div>
+
+<div class="hero">
+<h1>Aptitude Dashboard</h1>
+<p>Sharpen your skills in Quantitative, Logical, Verbal, and Non-Verbal reasoning. Click on each category to explore topics.</p>
+</div>
+
+<div class="container">
+    <div class="grid">
+
+        <div class="card-wrapper">
+            <div class="card" onclick="toggleTopics(this)">Quantitative Aptitude</div>
+            <div class="topics">
+                <h3>Topics</h3>
+                <ul>
+                    <li><a href="number.html">Number System</a></li>
+                    <li><a href="profit&loss.html">Profit & Loss</a></li>
+                    <li><a href="time&work.html">Time & Work</a></li>
+                    <li><a href="timespeed&distance.html">Time, Speed & Distance</a></li>
+                    <li><a href="average.html">Average</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card" onclick="toggleTopics(this)">Logical Reasoning</div>
+            <div class="topics">
+                <h3>Topics</h3>
+                <ul>
+                     <li><a href="series.html">Series</a></li>
+                    <li><a href="puzzle.html">Puzzles</a></li>
+                    <li><a href="bloodrelation.html">Blood Relations</a></li>
+                    <li><a href="directionsense.html">Direction Sense</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card" onclick="toggleTopics(this)">Verbal Reasoning</div>
+            <div class="topics">
+                <h3>Topics</h3>
+                <ul>
+                     <li><a href="analogies.html">Analogies</a></li>
+                    <li><a href="syllogism.html">Syllogism</a></li>
+                    <li><a href="classification.html">Classification</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card" onclick="toggleTopics(this)">Verbal Ability</div>
+            <div class="topics">
+                <h3>Topics</h3>
+                <ul>
+                    <li><a href="grammar.html">Grammar</a></li>
+                    <li><a href="vocabulary.html">Vocabulary</a></li>
+                    <li><a href="readingcomprehension.html">Reading Comprehension</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-wrapper">
+            <div class="card" onclick="toggleTopics(this)">Non-Verbal Reasoning</div>
+            <div class="topics">
+                <h3>Topics</h3>
+                <ul>
+                    <li><a href="figureseries.html">Figure Series</a></li>
+                    <li><a href="mirrior.html">Mirror Images</a></li>
+                    <li><a href="paperfolding.html">Paper Folding</a></li>
+                   
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function toggleTopics(card) {
+    document.querySelectorAll('.topics').forEach(t => t.style.display='none');
+    card.nextElementSibling.style.display='block';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Company Wise Placement Preparation</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#141414;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 70px;
+background:black;
+}
+
+.logo{
+font-size:38px;
+font-weight:bold;
+color:#e50914;
+}
+
+/* SEARCH BAR */
+
+.search-box input{
+padding:12px 18px;
+font-size:18px;
+border-radius:6px;
+border:none;
+width:300px;
+outline:none;
+}
+
+/* HERO */
+
+.hero{
+padding:70px;
+text-align:center;
+background:#111;
+}
+
+.hero h1{
+font-size:55px;
+color:#e50914;
+}
+
+.hero p{
+font-size:24px;
+line-height:36px;
+}
+
+/* SECTION */
+
+.section{
+padding:70px 120px;
+}
+
+.section h2{
+font-size:40px;
+margin-bottom:50px;
+color:#e50914;
+text-align:center;
+}
+
+/* COMPANY BOXES */
+
+.company-container{
+display:flex;
+flex-wrap:wrap;
+gap:40px;
+justify-content:center;
+}
+
+.company-box{
+background:#1f1f1f;
+padding:45px 20px;
+border-radius:14px;
+font-size:26px;
+width:360px;
+text-align:center;
+cursor:pointer;
+transition:0.35s;
+box-shadow:0 5px 15px rgba(0,0,0,0.7);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.company-box:hover{
+transform:scale(1.08);
+background:#e50914;
+color:white;
+}
+
+.company-box img {
+width:80px;       /* logo size */
+height:80px;
+object-fit:contain;
+margin-bottom:15px;
+transition: transform 0.3s ease;
+}
+
+.company-box:hover img {
+transform: scale(1.1);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">PLACED</div>
+
+<div class="search-box">
+<input type="text" id="searchCompany" placeholder="Search Company..." onkeyup="searchCompany()">
+</div>
+
+</div>
+
+<!-- HERO -->
+
+<div class="hero">
+
+<h1>Company Wise Placement Preparation</h1>
+
+<p>
+Select a company to start your placement preparation.
+This dashboard provides syllabus, eligibility, recruitment process,
+salary details and preparation strategy for top companies.
+</p>
+
+<!-- Hero Image -->
+<div style="margin-top:40px; text-align:center;">
+  <img src="images/placement_dashboard.png" alt="Placement Preparation Image" style="max-width:80%; height:auto; border-radius:10px;">
+</div>
+
+</div> <!-- end hero -->
+
+<!-- COMPANY SECTION -->
+
+<div class="section">
+
+<h2>Top Placement Companies</h2>
+
+<div class="company-container" id="companyList">
+
+<div class="company-box">
+  <a href="wipro.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/wipro.png" alt="Wipro Logo">
+    Wipro
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="tcs.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/tcs.png" alt="TCS Logo">
+    TCS
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="google.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/google.png" alt="Google Logo">
+    Google
+  </a>
+</div>
+
+
+<div class="company-box">
+  <a href="infosys.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/infosys.png" alt="Infosys Logo">
+    Infosys
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="accenture.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/accenture.png" alt="Accenture Logo">
+    Accenture
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="cognizant.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/cognizant.png" alt="Cognizant Logo">
+    Cognizant
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="tata_motors.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/tata_motors.png" alt="Tata Motors Logo">
+    Tata Motors
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="microsoft.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/microsoft.png" alt="Microsoft Logo">
+    Microsoft
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="hcl.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/hcl.png" alt="HCL Tech Logo">
+    HCL Tech
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="capgemini.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/capgemini.png" alt="Capgemini Logo">
+    Capgemini
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="winspire.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/winspire.png" alt="Winspire Logo">
+    Winspire
+  </a>
+</div>
+
+
+
+<div class="company-box">
+  <a href="ptc.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/ptc.png" alt="PTC Logo">
+    PTC
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="cisco.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/cisco.png" alt="Cisco Logo">
+    Cisco
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="oracle.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/oracle.png" alt="Oracle Logo">
+    Oracle
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="intel.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/intel.png" alt="Intel Logo">
+    Intel
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="ibm.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/ibm.png" alt="IBM Logo">
+    IBM
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="siemens.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/siemens.png" alt="Siemens Logo">
+    Siemens
+  </a>
+</div>
+
+<div class="company-box">
+  <a href="marutisuzuki.html" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center;">
+    <img src="images/maruti_suzuki.png" alt="Maruti Suzuki Logo">
+    Maruti Suzuki
+  </a>
+</div>
+</div>
+
+</div>
+
+<script>
+
+function searchCompany() {
+
+let input = document.getElementById("searchCompany").value.toLowerCase();
+
+let companies = document.getElementsByClassName("company-box");
+
+for(let i=0;i<companies.length;i++){
+
+let name = companies[i].textContent.toLowerCase();
+
+if(name.includes(input)){
+companies[i].style.display="flex";
+}
+else{
+companies[i].style.display="none";
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

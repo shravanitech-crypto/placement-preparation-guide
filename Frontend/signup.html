@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="index.html" class="home-btn">Home</a>
+
+<div class="signup-wrapper">
+    <form id="registerForm" class="signup-card">
+        <h2>Create Account</h2>
+
+        <div class="form-row">
+            <input type="text" id="fullName" placeholder="Full Name" required>
+            <small class="error" id="fullNameError"></small>
+        </div>
+
+        <div class="form-row">
+            <input type="email" id="email" placeholder="Email Address" required>
+            <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="form-row">
+            <input type="text" id="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" title="Enter 10 digit mobile number" required>
+            <small class="error" id="mobileError"></small>
+        </div>
+
+        <div class="form-row">
+            <select id="department" required>
+                <option value="">Select Department</option>
+                <option value="CSE">Computer Science (CSE)</option>
+                <option value="IT">Information Technology (IT)</option>
+            </select>
+            <small class="error" id="departmentError"></small>
+        </div>
+
+        <div class="form-row">
+            <select id="year" required>
+                <option value="">Select Year</option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Final Year</option>
+            </select>
+            <small class="error" id="yearError"></small>
+        </div>
+
+        <div class="form-row">
+            <input 
+                type="text" 
+                id="username" 
+                placeholder="Username"
+                pattern="^[a-zA-Z0-9_]+$"
+                title="Username should contain only letters, numbers or underscore"
+                required
+            >
+            <small class="error" id="usernameError"></small>
+        </div>
+
+        <div class="form-row">
+            <input 
+                type="password" 
+                id="password" 
+                placeholder="Password"
+                minlength="6"
+                required
+            >
+            <small class="error" id="passwordError"></small>
+        </div>
+
+        <div class="form-row">
+            <input 
+                type="password" 
+                id="confirmPassword" 
+                placeholder="Confirm Password"
+                minlength="6"
+                required
+            >
+            <small class="error" id="confirmPasswordError"></small>
+        </div>
+
+        <button type="submit">Create Account</button>
+
+        <p class="login-text">
+            Already have an account?
+            <a href="login.html">Log In</a>
+        </p>
+
+    </form>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
