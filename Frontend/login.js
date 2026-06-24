@@ -1,4 +1,4 @@
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
     const username = document.getElementById("username").value.trim();
@@ -11,7 +11,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
     try {
 
-        const response = await fetch("http://localhost:5000/api/users/login", {
+        const response = await fetch(`${API_URL}/api/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -23,10 +23,10 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (response.ok) {
 
-            // ⭐ SAVE SESSION
+            // Save session
             localStorage.setItem("userLoggedIn", "true");
 
-            // ⭐ SAVE USERNAME
+            // Save username
             localStorage.setItem("username", username);
 
             alert("Login Successful ✅");

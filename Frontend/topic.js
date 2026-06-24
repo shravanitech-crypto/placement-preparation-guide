@@ -5,7 +5,7 @@ const topicName = urlParams.get("name");
 document.getElementById("topicTitle").innerText = topicName;
 
 // Fetch dynamic topic content
-fetch("http://localhost:5000/api/ai/generate", {
+fetch(`${API_URL}/api/ai/generate`, {
     method: "POST",
     headers: {
         "Content-Type": "application/json"

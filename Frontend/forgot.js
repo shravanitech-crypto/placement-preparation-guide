@@ -1,48 +1,49 @@
-document.getElementById("forgotForm").addEventListener("submit", async function(e){
+document.getElementById("forgotForm").addEventListener("submit", async function (e) {
 
-e.preventDefault();
+    e.preventDefault();
 
-const email = document.getElementById("email").value;
-const password = document.getElementById("newPassword").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("newPassword").value;
 
-if(password.length < 6){
-alert("Password must be at least 6 characters");
-return;
-}
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+    }
 
-try{
+    try {
 
-const res = await fetch("http://localhost:5000/api/users/reset-password",{
+        const res = await fetch(`${API_URL}/api/users/reset-password`, {
 
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-body:JSON.stringify({
-email:email,
-password:password
-})
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
 
-});
+        });
 
-const data = await res.json();
+        const data = await res.json();
 
-if(res.ok){
+        if (res.ok) {
 
-alert("Password Updated Successfully");
-window.location.href="login.html";
+            alert("Password Updated Successfully");
+            window.location.href = "login.html";
 
-}else{
+        } else {
 
-alert(data.message);
+            alert(data.message);
 
-}
+        }
 
-}catch(err){
+    } catch (err) {
 
-alert("Server Error");
+        console.log(err);
+        alert("Server Error");
 
-}
+    }
 
 });
