@@ -2,7 +2,7 @@
 
 A full-stack web application designed to help students prepare for campus placements through aptitude learning, practice tests, and an AI-powered ATS-friendly resume checker.
 
----
+-----
 
 ## 📌 About the Project
 
@@ -21,7 +21,7 @@ The platform allows students to:
 
 The main goal of the project is to provide students with a simple and centralized platform for placement preparation.
 
----
+-----
 
 ## ✨ Features
 
@@ -54,7 +54,7 @@ The main goal of the project is to provide students with a simple and centralize
 - Aptitude topics stored in MongoDB
 - Feedback and contact information stored in MongoDB
 
----
+-----
 
 ## 🛠️ Tech Stack
 
@@ -86,7 +86,7 @@ The main goal of the project is to provide students with a simple and centralize
 - GitHub
 - VS Code
 
----
+-----
 
 ## 🏗️ Project Structure
 
